@@ -16,4 +16,12 @@ class ValidateNameClass{
         }
         return returnValue
     }
+    
+    func ValidatePassword(password1: String, password2: String) -> Bool {
+        var returnValue: Bool = false
+        if password1 == password2 {
+            returnValue = true
+        }
+        return returnValue
+    }
 }

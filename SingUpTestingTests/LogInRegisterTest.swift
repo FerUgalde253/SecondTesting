@@ -9,44 +9,54 @@ import XCTest
 @testable import SingUpTesting
 
 final class LogInRegisterTest: XCTestCase {
+    
+    let sut = ValidateNameClass()
 
     func testSingUpModel_WhenANameIsGiven_ShouldPass() {
         //Given
-        let firstName: String = "Miguel"
-        let sut = ValidateNameClass()
         //When
-        let validName = sut.ValidationName(name: firstName)
+        let validName = sut.ValidationName(name: "Miguel")
         //Then/Assert
         XCTAssertTrue(validName, "Validate if is not empty")
     }
     
     func testSingUpFunction_WhenNameIsGivenAndIsEmpty_ShouldnotPass(){
         //Given
-        let firstName: String = ""
-        let sut = ValidateNameClass()
         //When
-        let invalidName = sut.ValidationName(name: firstName)
+        let invalidName = sut.ValidationName(name: "")
         //Then/Assert
         XCTAssertFalse(invalidName, "Validate if is empty, if true the srtring is not empty")
     }
     
     func testSingUpFunction_WhenNameIsLessThanTwoCharacters_ShouldNotPass(){
         //Given
-        let firstName: String = "f"
-        let sut = ValidateNameClass()
         //When
-        let shortName = sut.ValidationName(name: firstName)
+        let shortName = sut.ValidationName(name: "f")
         //Then/Assert
         XCTAssertFalse(shortName,"If False should pass because is shorter than necesary")
     }
     
     func testSingUpFunction_WhenNameIsLessThanTenCharacters_ShouldNotPass(){
         //Given
-        let firstName: String = "FernanandoUgalde"
-        let sut = ValidateNameClass()
         //When
-        let shortName = sut.ValidationName(name: firstName)
+        let shortName = sut.ValidationName(name: "FernanandoUgalde")
         //Then/Assert
         XCTAssertFalse(shortName,"If False should pass because is shorter than necesary")
+    }
+    
+    func testPasswordFunction_WhenPasswordsAreEqual_ShouldPass(){
+        //Given
+        //When
+        let shortName = sut.ValidatePassword(password1: "1234", password2: "1234")
+        //Then/Assert
+        XCTAssertTrue(shortName, "Should pass if bouth passwords are equal")
+    }
+    
+    func testPasswordFunction_WhenPasswordsAreNotEqual_ShouldPass(){
+        //Given
+        //When
+        let shortName = sut.ValidatePassword(password1: "1224", password2: "1234")
+        //Then/Assert
+        XCTAssertFalse(shortName, "Should pass if bouth passwords are Diferente")
     }
 }
